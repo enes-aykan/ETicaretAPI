@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace ETicaretAPI.Persistance
 {
@@ -13,9 +14,7 @@ namespace ETicaretAPI.Persistance
     {
         public static void AddPersistanceServices(this IServiceCollection services)
         {
-            services.AddDbContext<ETicaretAPIDbContext>(options => options.UseNpgsql("UserId =postgres;Password=123456;Host=localhost;Port=5432;DataBase=ETicaretAPIDb;"));
-            //services.AddSingleton<IProductService,ProductService>();
-            //services.AddDbContext<ETicaretAPIDbContext>(options => options.UseSqlServer("Data Source=(localdb)\\Local;Initial Catalog=ETicaretAPIDb;User ID=AppUser;Password=1q2w3e4r*;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
+            services.AddDbContext<ETicaretAPIDbContext>(options => options.UseNpgsql(Configuration.ConnectionString));
         }
     }
 }
